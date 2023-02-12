@@ -10,18 +10,26 @@ from datetime import datetime
 class BaseModel():
     """defines all common attributes/methods for other classes"""
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initializes a BaseModel instance
 
         Args:
-            id (str): unique id
-            created_at (datetime): time when instance is created
-            updated_at (datetime): time when instance is updated
+            args (tuple): contains all positional arguments
+            kwargs (dict): contains all key worded arguments
         """
-        a = uuid.uuid4()
-        self.id = str(a)
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            for k, v in kwargs.items():
+                if k == "created_at":
+                    self.created_at = datetime.fromisoformat(v)
+                elif k == "updated_at":
+                    self.updated_at = datetime.fromisoformat(v)
+                elif k == "id":
+                    self.id = v
+        else:
+            a = uuid.uuid4()
+            self.id = str(a)
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """returns string representation of BaseModel"""
