@@ -20,7 +20,15 @@ class HBNBCommand(cmd.Cmd):
     """implements a commamnd interpreter using the cmd module"""
 
     prompt = "(hbnb) "
-    __classes = {"BaseModel", "User"}
+    __classes = {
+            "BaseModel",
+            "User",
+            "Place",
+            "State",
+            "City",
+            "Amenity",
+            "Review"
+            }
 
     def do_create(self, line):
         """Creates a new BaseModel instance and saves it to a JSON file
