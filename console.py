@@ -5,6 +5,7 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 import models
 import sys
 from shlex import split
@@ -14,7 +15,7 @@ class HBNBCommand(cmd.Cmd):
     """implements a commamnd interpreter using the cmd module"""
 
     prompt = "(hbnb) "
-    __classes = {"BaseModel"}
+    __classes = {"BaseModel", "User"}
 
     def do_create(self, line):
         """Creates a new BaseModel instance and saves it to a JSON file
