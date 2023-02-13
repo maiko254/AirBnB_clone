@@ -162,6 +162,12 @@ class HBNBCommand(cmd.Cmd):
                     print (self.get_obj(clsname))
                 elif methodname == 'count':
                     print (len(self.get_obj(clsname)))
+                elif methodname == 'show':
+                    cls_id = div[2][1:-1]
+                    self.do_show(clsname + ' ' + cls_id)
+                elif methodname == 'destroy':
+                    cls_id = div[2][1:-1]
+                    self.do_destroy(clsname + ' ' + cls_id)
 
     def emptyline(self):
         """Won't repeat the last non-empty comman when an empty line
