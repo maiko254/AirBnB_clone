@@ -22,7 +22,11 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """returns the dictionary __objects"""
+        """
+        returns the dictionary __objects that stores
+        all objects by <class name>.id
+
+        """
         return self.__objects
 
     def new(self, obj):

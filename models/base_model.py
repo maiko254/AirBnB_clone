@@ -47,13 +47,8 @@ class BaseModel():
     def to_dict(self):
         """returns a dictionary containing all keys/values of
         __dict__ of this instance"""
-        new = self.__dict__
-        for key, value in new.items():
-            if key == "created_at":
-                new[key] = value.isoformat()
-            if key == "updated_at":
-                new[key] = value.isoformat()
-
-        new['__class__'] = self.__class__.__name__
-
+        new = self.__dict__.copy()
+        new["created_at"] = self.created_at.isoformat()
+        new["updated_at"] = self.updated_at.isoformat()
+        new["__class__"] = self.__class__.__name__
         return new

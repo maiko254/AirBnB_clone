@@ -13,6 +13,7 @@ from models.amenity import Amenity
 from models.review import Review
 import models
 import sys
+import re
 from shlex import split
 
 
@@ -126,6 +127,39 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, arg):
         """EOF command to exit the program"""
         return True
+
+    def get_obj(self, inst=''):
+        """Retrieves an instance that matches inst argument 
+        from the json file used in the storage engine
+
+        Args:
+            inst (obj): the instance to find
+        Returns:
+            list of matching instance or all instances if no match
+        """
+        
+        obj = models.storage.all()
+        if inst:
+            return [str(v) for k, v in obj.items()
+                    if k.startswith(inst)]
+
+        return [str(v) for k, v in obj.items()]
+
+    def default(self, line):
+        """
+        If the command has the syntax:
+        <class name>.<method name>
+        it calls the method if the class exists
+
+        """
+        if '.' in line:
+            div = re.split(r'\.|\(|\)', line)
+            clsname = div[0]
+            methodname = div[1]
+
+            if clsname in self.__classes:
+                if methodname == 'all':
+                    print (self.get_obj(clsname))
 
     def emptyline(self):
         """Won't repeat the last non-empty comman when an empty line
