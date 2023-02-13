@@ -160,6 +160,8 @@ class HBNBCommand(cmd.Cmd):
             if clsname in self.__classes:
                 if methodname == 'all':
                     print (self.get_obj(clsname))
+                elif methodname == 'count':
+                    print (len(self.get_obj(clsname)))
 
     def emptyline(self):
         """Won't repeat the last non-empty comman when an empty line
