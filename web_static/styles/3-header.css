@@ -1,0 +1,19 @@
+/*
+====================================
+			Header style
+====================================
+*/
+header {
+	background: white;
+	height: 70px;
+	width: 100%;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #CCCCCC;
+	background-image: url("../images/icon.png");
+	background-position: 10px;
+	background-repeat: no-repeat;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
